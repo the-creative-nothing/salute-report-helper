@@ -13,3 +13,14 @@ The imagined workflow is the following:
 Using tools like this helps ensure that we are using consistent reporting methods, conveying clear information, and doing all of that on a platform that does not persist data.
 
 The application runs as a simple Flask API, which does nothing more than take in request data, extract specific information, and then formats it into a response. No information is persisted anywhere outside of live Flask process memory.
+
+To launch the app on Ubuntu, or other Debian Linuxes:
+```sudo apt install python3-flask```
+
+You can either use the built in Flask server to launch the application or use Python:
+```flask ./app.py```
+```python3 ./app.py```
+
+If you want to launch in a more stable daemonized environment you can use Gunicorn
+```gunicorn app:app -p 5000 --daemon```
+This could also be set up as a service using systemd if you wanted.
