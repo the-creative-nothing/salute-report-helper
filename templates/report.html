@@ -1,0 +1,200 @@
+<!-- templates/report.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SALUTE Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #aaa;
+            font-size: 1.1em;
+        }
+        
+        .report-card {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background-color: #45a049;
+        }
+        
+        .report-content {
+            background-color: #2d2d2d;
+            border-radius: 5px;
+            padding: 20px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow: auto;
+            max-height: 500px;
+            border: 1px solid #333;
+            margin-bottom: 20px;
+        }
+        
+        .back-btn {
+            background-color: #333;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: #444;
+        }
+        
+        .info-box {
+            background-color: #2d2d2d;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .info-box h3 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        .info-box ul {
+            padding-left: 20px;
+        }
+        
+        .info-box li {
+            margin-bottom: 8px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .report-card {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SALUTE Report</h1>
+            <p class="subtitle">Standardized Intelligence Reporting Format</p>
+        </header>
+        
+        <div class="report-card">
+            <button class="copy-btn" onclick="copyReport()">Copy Report</button>
+            
+            <div class="report-content" id="reportContent">
+                {{ report }}
+            </div>
+            
+            <button class="back-btn" onclick="window.location.href='/'">Create New Report</button>
+        </div>
+        
+        <div class="info-box">
+            <h3>SALUTE Report Format</h3>
+            <ul>
+                <li><strong>S</strong> - Size: Number of personnel or vehicles observed</li>
+                <li><strong>A</strong> - Activity: What the enemy is currently doing</li>
+                <li><strong>L</strong> - Location: Usually via grid coordinates</li>
+                <li><strong>U</strong> - Unit/Uniform: Unit patches, insignia, or clothing description</li>
+                <li><strong>T</strong> - Time: Time activity was observed (not report transmission)</li>
+                <li><strong>E</strong> - Equipment: Weapons, vehicles, or special equipment observed</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>Vibe Coded By Secret Hacker Lab || fuck copyright</p>
+        </footer>
+    </div>
+
+    <script>
+        function copyReport() {
+            const reportContent = document.getElementById('reportContent');
+            const range = document.createRange();
+            range.selectNode(reportContent);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            
+            // Show feedback
+            const originalText = document.querySelector('.copy-btn').textContent;
+            document.querySelector('.copy-btn').textContent = 'Copied!';
+            setTimeout(() => {
+                document.querySelector('.copy-btn').textContent = originalText;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
