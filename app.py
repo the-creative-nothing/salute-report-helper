@@ -14,8 +14,10 @@ def salute_report():
             'unit_uniform': request.form.get('unit_uniform', ''),
             'time': request.form.get('time', ''),
             'equipment': request.form.get('equipment', ''),
-            'network' : request.form.get('network', ''),
-            'talkgroup' : request.form.get('talkgroup', '')
+            #replace with notes
+            'notes' : request.form.get('notes', '')
+            #'network' : request.form.get('network', ''),
+            #'talkgroup' : request.form.get('talkgroup', '')
         }
         now = datetime.now()
         
@@ -30,8 +32,7 @@ Location: {report_data['location']}
 Unit/Uniform: {report_data['unit_uniform']}
 Time: {report_data['time']}
 Equipment: {report_data['equipment']}
-Network: {report_data['network']}
-Talkgroup: {report_data['talkgroup']}
+Notes: {report_data['notes']}
 
 END REPORT"""
 
